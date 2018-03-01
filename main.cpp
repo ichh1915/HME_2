@@ -93,6 +93,7 @@ int8_t motorHome() {
     return readRotorState();
 }
 
+//Interrupt servise routine, read the motor state and control the motor field
 void isr(){        
     int8_t orState = 0;    //Rotot offset at motor state 0
     int8_t intState = 0;
@@ -119,6 +120,7 @@ int main() {
 
     //orState is subtracted from future rotor state inputs to align rotor and motor states
     
+    //isr triggered at the rising edge of I1
     I1.rise(&isr);
     //Poll the rotor state and set the motor outputs accordingly to spin the motor
 
